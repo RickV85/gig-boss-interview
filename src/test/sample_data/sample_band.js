@@ -1,4 +1,4 @@
-export const sampleBData = {
+export const sampleBandData = {
   band_name: "Harmony Fusion",
   members: [
     {

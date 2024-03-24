@@ -1,7 +1,6 @@
 import { describe, expect, test, beforeEach } from "@jest/globals";
 import { Band } from "../Classes/Band";
 import { sampleBandData } from "./sample_data/sample_band";
-import { Member } from "../Classes/Member";
 
 describe("Band", () => {
   let band;
@@ -14,8 +13,8 @@ describe("Band", () => {
   });
 
   test("should be constructed with correct properties", () => {
-    const name = "";
-    const members = [];
+    const name = band.bandName;
+    const members = band.members;
 
     expect(name).toEqual("Harmony Fusion");
     expect(members).toEqual([
