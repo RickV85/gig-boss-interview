@@ -11,11 +11,10 @@ body {
 
 button,
 select {
-  border: 1px solid #808f85;
+  border: none;
   border-radius: 20px;
-  background-color: #808f8587;
+  background-color: #808f855f;
   color: #000;
-  font-weight: 700 !important;
   cursor: pointer;
 }
 
