@@ -11,6 +11,8 @@ export class Band {
   }
 
   findUserIncome() {
+    const user = this.members.find((mem) => mem.name.toLowerCase() === "you");
     
+    return user ? user.income : null;
   }
 }
