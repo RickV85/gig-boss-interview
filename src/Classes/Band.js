@@ -17,6 +17,11 @@ export class Band {
   }
 
   findBandIncomeForYear() {
-    
+    const totalIncome = this.members.reduce((sum, mem) => {
+      sum += mem.income;
+      return sum;
+    }, 0);
+
+    return totalIncome;
   }
 }
