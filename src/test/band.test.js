@@ -1,5 +1,6 @@
 import { describe, expect, test, beforeEach } from "@jest/globals";
 import { Band } from "../Classes/Band";
+import { Member } from "../Classes/Member";
 import { sampleBandData } from "./sample_data/sample_band";
 
 describe("Band", () => {
@@ -35,5 +36,11 @@ describe("Band", () => {
         income: 100,
       },
     ]);
+  });
+
+  test("each member of a band should be an instance of Member", () => {
+    band.members.forEach((mem) => {
+      expect(mem).toBeInstanceOf(Member);
+    });
   });
 });
