@@ -1,5 +1,5 @@
 * {
-  font-family: 'Hind';
+  font-family: "Hind";
 }
 
 html {
@@ -7,15 +7,34 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  background-color: #FFFFFF;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #ffffff;
 }
 
-button, select {
+button,
+select {
   border-radius: 20px;
 }
 
 p {
   font-weight: 400;
+}
+
+.gigboss-nav {
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  width: 100%;
+  background-color: #f2460d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gigboss-logo {
+  height: 60%;
 }
