@@ -21,20 +21,18 @@ export class BandRepo {
   }
 
   createYearlyTotalIncomeByMember() {
-    const hashMap = {};
-
-    this.bands.forEach((band) => {
+    const hashMap = this.bands.reduce((hash, band) => {
       band.members.forEach((mem) => {
-        if (hashMap[mem.name]?.income) {
-          hashMap[mem.name].income += mem.income;
+        if (hash[mem.name]?.income) {
+          hash[mem.name].income += mem.income;
+          // Only add to hash if member is not user/you
         } else if (mem.name.toLowerCase() !== "you") {
-          hashMap[mem.name] = { name: mem.name, income: mem.income };
+          hash[mem.name] = { name: mem.name, income: mem.income };
         }
       });
-    });
+      return hash;
+    }, {});
 
-    const resultArr = Object.keys(hashMap).map((key) => hashMap[key]);
-    console.log(resultArr);
-    return resultArr;
+    return Object.values(hashMap);
   }
 }
