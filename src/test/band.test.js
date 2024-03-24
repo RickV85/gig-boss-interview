@@ -49,4 +49,10 @@ describe("Band", () => {
 
     expect(userIncome).toEqual(300);
   });
+
+  test("should have a method to return band income for year", () => {
+    const totalBandIncome = band.findBandIncomeForYear();
+
+    expect(totalBandIncome).toEqual(750);
+  });
 });
