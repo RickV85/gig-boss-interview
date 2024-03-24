@@ -3,19 +3,19 @@ import { sampleMemberData } from './sample_data/sample_member';
 import { Member } from '../Classes/Member';
 
 describe("Member", () => {
-  let testMember;
+  let member;
 
   beforeEach(() => {
-    testMember = new Member(sampleMemberData);
+    member = new Member(sampleMemberData);
   })
 
   test("should be an instance of Member", () => {
-    expect(testMember).toBeInstanceOf(Member);
+    expect(member).toBeInstanceOf(Member);
   });
 
   test("should have correct properties", () => {
-    const name = "";
-    const income = 0;
+    const name = member.name;
+    const income = member.income;
 
     expect(name).toEqual("Deepak");
     expect(income).toEqual(2700);
