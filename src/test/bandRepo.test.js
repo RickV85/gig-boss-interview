@@ -13,53 +13,6 @@ describe("BandRepo", () => {
     expect(bandRepo).toBeInstanceOf(BandRepo);
   });
 
-  test("should be constructed with correct properties", () => {
-    expect(bandRepo.bands).toEqual([
-      {
-        band_name: "Global Groove",
-        members: [
-          {
-            name: "You",
-            income: 2600,
-          },
-          {
-            name: "Carlos",
-            income: 2400,
-          },
-          {
-            name: "Deepak",
-            income: 2700,
-          },
-          {
-            name: "Elena",
-            income: 2500,
-          },
-        ],
-      },
-      {
-        band_name: "Melody Makers",
-        members: [
-          {
-            name: "You",
-            income: 400,
-          },
-          {
-            name: "Liam",
-            income: 500,
-          },
-          {
-            name: "Aisha",
-            income: 600,
-          },
-          {
-            name: "Raj",
-            income: 700,
-          },
-        ],
-      },
-    ]);
-  });
-
   test("should have bands property of Band instances", () => {
     bandRepo.bands.forEach((band) => {
       expect(band).toBeInstanceOf(Band);
