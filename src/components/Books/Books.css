@@ -22,7 +22,7 @@ main {
   margin-left: .25rem;
 }
 
-.band-select {
+.band-select, .books-btn {
   width: 70%;
   max-width: 18rem;
   height: 3rem;

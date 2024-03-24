@@ -5,13 +5,13 @@
 body {
   min-height: 100vh;
   width: 100vw;
-  max-width: 100vw;
   overflow-x: hidden;
   background-color: #ffffff;
 }
 
 button,
 select {
+  border: 1px solid #808f85;
   border-radius: 20px;
   background-color: #808f8587;
   color: #000;
