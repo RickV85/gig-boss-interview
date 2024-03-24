@@ -10,4 +10,8 @@ export class BandRepo {
 
     return bands;
   }
+
+  calcTotalIncomeAllBands(){
+    
+  }
 }

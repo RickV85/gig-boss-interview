@@ -18,4 +18,10 @@ describe("BandRepo", () => {
       expect(band).toBeInstanceOf(Band);
     });
   });
+
+  test("should calculate total yearly income for all bands a user is in", () => {
+    const totalIncomeAllBands = bandRepo.calcTotalIncomeAllBands();
+
+    expect(totalIncomeAllBands).toEqual(12400);
+  });
 });
