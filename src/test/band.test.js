@@ -43,4 +43,10 @@ describe("Band", () => {
       expect(mem).toBeInstanceOf(Member);
     });
   });
+
+  test("should have a method to return user's income from other members", () => {
+    const userIncome = band.findUserIncome();
+
+    expect(userIncome).toEqual(300);
+  });
 });

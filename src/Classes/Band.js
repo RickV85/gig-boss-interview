@@ -9,4 +9,8 @@ export class Band {
   initializeMembers(members) {
     return members.map((mem) => new Member(mem));
   }
+
+  findUserIncome() {
+    
+  }
 }
