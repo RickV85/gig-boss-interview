@@ -11,7 +11,12 @@ export class BandRepo {
     return bands;
   }
 
-  calcTotalIncomeAllBands(){
+  calcTotalIncomeAllBands() {
+    const grandTotal = this.bands.reduce((sum, band) => {
+      sum += band.findBandIncomeForYear();
+      return sum;
+    }, 0);
     
+    return grandTotal;
   }
 }
