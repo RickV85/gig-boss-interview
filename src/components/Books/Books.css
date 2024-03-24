@@ -2,23 +2,29 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.books-header {
-  margin: 1rem 0rem;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .total-income-div {
   display: flex;
+  align-items: center;
 }
 
 .total-income {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 400;
 }
 
 .total-income-amt {
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-left: .25rem;
+}
+
+.band-select {
+  width: 70%;
+  max-width: 18rem;
+  height: 3rem;
+  text-align: center;
 }

@@ -13,6 +13,14 @@ body {
 button,
 select {
   border-radius: 20px;
+  background-color: #808f8587;
+  color: #000;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+
+button:focus, select:focus {
+  border-color: #cfd11a;
 }
 
 p {
