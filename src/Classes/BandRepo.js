@@ -16,7 +16,11 @@ export class BandRepo {
       sum += band.findBandIncomeForYear();
       return sum;
     }, 0);
-    
+
     return grandTotal;
+  }
+
+  createYearlyTotalIncomeByMember() {
+    return [];
   }
 }
