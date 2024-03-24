@@ -1,4 +1,4 @@
-export const sampleBandRepo = {
+export const sampleBandRepoData = {
   bands: [
     {
       band_name: "Global Groove",
