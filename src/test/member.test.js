@@ -13,7 +13,7 @@ describe("Member", () => {
     expect(member).toBeInstanceOf(Member);
   });
 
-  test("should have correct properties", () => {
+  test("should be constructed with correct properties", () => {
     const name = member.name;
     const income = member.income;
 
