@@ -55,4 +55,62 @@ describe("BandRepo", () => {
       },
     ]);
   });
+
+  test("it should add totals if a member is in multiple bands", () => {
+    const newBand = new Band({
+      band_name: "New Band",
+      members: [
+        {
+          name: "You",
+          income: 1000,
+        },
+        {
+          name: "Liam",
+          income: 150,
+        },
+        {
+          name: "Jojo",
+          income: 200,
+        },
+        {
+          name: "Raj",
+          income: 100,
+        },
+      ],
+    });
+
+    bandRepo.bands.push(newBand);
+    const addedBandRepo = bandRepo.createYearlyTotalIncomeByMember();
+
+    expect(addedBandRepo).toEqual([
+      {
+        name: "Carlos",
+        income: 2400,
+      },
+      {
+        name: "Deepak",
+        income: 2700,
+      },
+      {
+        name: "Elena",
+        income: 2500,
+      },
+      {
+        name: "Liam",
+        income: 650,
+      },
+      {
+        name: "Aisha",
+        income: 600,
+      },
+      {
+        name: "Raj",
+        income: 800,
+      },
+      {
+        name: "Jojo",
+        income: 200,
+      },
+    ]);
+  });
 });
