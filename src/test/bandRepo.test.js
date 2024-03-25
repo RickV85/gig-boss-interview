@@ -148,5 +148,9 @@ describe("BandRepo", () => {
 
   test("calcTotalForMembersIncomeInRange should return 0 for empty band repo", () => {
     expect(emptyBandRepo.calcTotalForMembersIncomeInRange()).toEqual(0);
-  })
+  });
+
+  test("calcTotalForMembersIncomeInRange should return total of all member income if no args provided", () => {
+    expect(bandRepo.calcTotalForMembersIncomeInRange()).toEqual(9400);
+  });
 });
