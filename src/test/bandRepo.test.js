@@ -145,4 +145,8 @@ describe("BandRepo", () => {
   test("createYearlyTotalIncomeByMember should return empty array if no bands in repo", () => {
     expect(emptyBandRepo.createYearlyTotalIncomeByMember()).toEqual([]);
   });
+
+  test("calcTotalForMembersIncomeInRange should return 0 for empty band repo", () => {
+    expect(emptyBandRepo.calcTotalForMembersIncomeInRange()).toEqual(0);
+  })
 });
