@@ -2,7 +2,7 @@ import { Member } from "./Member";
 
 export class Band {
   constructor(data) {
-    this.bandName = data.band_name;
+    this.bandName = data.band_name || "Unknown band";
     this.members = this.initializeMembers(data.members);
   }
 
