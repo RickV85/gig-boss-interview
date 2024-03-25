@@ -20,6 +20,9 @@ export class BandRepo {
     return grandTotal;
   }
 
+  // I'm summing a member's income if first name matches another
+  // member (same person in another band the user is also in) but
+  // in the real world, I'd be matching up ID's not first names.
   createYearlyTotalIncomeByMember() {
     const hashMap = this.bands.reduce((hash, band) => {
       band.members.forEach((mem) => {
