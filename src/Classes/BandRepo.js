@@ -50,4 +50,8 @@ export class BandRepo {
 
     return memIncomeSum;
   }
+
+  createTotalForMembersIncomeUnder600() {
+    return null;
+  }
 }
