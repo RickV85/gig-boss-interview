@@ -6,9 +6,11 @@ export class BandRepo {
   }
 
   initializeBands(bandData) {
-    const bands = bandData.map((band) => new Band(band));
-
-    return bands;
+    if (bandData && bandData.length) {
+      return bandData.map((band) => new Band(band));
+    } else {
+      return [];
+    }
   }
 
   calcTotalIncomeAllBands() {

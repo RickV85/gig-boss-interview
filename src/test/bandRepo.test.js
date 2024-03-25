@@ -9,7 +9,7 @@ describe("BandRepo", () => {
 
   beforeEach(() => {
     bandRepo = new BandRepo(sampleBandRepoData);
-    emptyBandRepo = new BandRepo([]);
+    emptyBandRepo = new BandRepo({ bands: [] });
   });
 
   test("should be an instance of BandRepo", () => {
@@ -135,5 +135,6 @@ describe("BandRepo", () => {
 
   test("should initialize BandRepo if no bands provided", () => {
     expect(emptyBandRepo).toBeInstanceOf(BandRepo);
-  })
+    expect(emptyBandRepo.bands).toEqual([]);
+  });
 });
