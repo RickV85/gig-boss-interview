@@ -22,12 +22,18 @@ describe("Member", () => {
   });
 
   test("should have default values for properties", () => {
-    const missingInfo = { name: "", income: undefined };
+    const missingInfo = new Member({ name: "", income: undefined });
 
     const name = missingInfo.name;
     const income = missingInfo.income;
 
     expect(name).toEqual("Unknown");
     expect(income).toEqual(0);
+  });
+
+  test("should not allow negative income values", () => {
+    const negIncome = new Member({ name: "", income: -500 });
+
+    expect(negIncome.income).toEqual(0);
   });
 });
