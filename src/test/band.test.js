@@ -74,4 +74,22 @@ describe("Band", () => {
 
     expect(missingName.bandName).toBe("Unknown band");
   });
+
+  test("should return 0 if user income falsy", () => {
+    const missingUserIncome = new Band({
+      band_name: "",
+      members: [
+        {
+          name: "You",
+          income: null,
+        },
+        {
+          name: "Yuki",
+          income: 200,
+        },
+      ],
+    });
+
+    expect(missingUserIncome.findUserIncome()).toBe(0);
+  });
 });
