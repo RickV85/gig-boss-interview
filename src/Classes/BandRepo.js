@@ -39,7 +39,7 @@ export class BandRepo {
     return Object.values(hashMap);
   }
 
-  createTotalForMembersIncomeOver600() {
+  calcTotalForMembersIncomeOver600() {
     const allMembersYearlyTotal = this.createYearlyTotalIncomeByMember();
     const memIncomeSum = allMembersYearlyTotal.reduce((sum, mem) => {
       if (mem.income >= 600) {
@@ -51,7 +51,15 @@ export class BandRepo {
     return memIncomeSum;
   }
 
-  createTotalForMembersIncomeUnder600() {
-    return null;
+  calcTotalForMembersIncomeUnder600() {
+    const allMembersYearlyTotal = this.createYearlyTotalIncomeByMember();
+    const memIncomeSum = allMembersYearlyTotal.reduce((sum, mem) => {
+      if (mem.income < 600) {
+        sum += mem.income;
+      }
+      return sum;
+    }, 0);
+
+    return memIncomeSum;
   }
 }

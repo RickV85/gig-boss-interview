@@ -115,10 +115,10 @@ describe("BandRepo", () => {
   });
 
   test("should create total for band members with income of at least $600 for the year", () => {
-    expect(bandRepo.createTotalForMembersIncomeOver600()).toEqual(8900);
+    expect(bandRepo.calcTotalForMembersIncomeOver600()).toEqual(8900);
   });
 
   test("should create total for band members with income of less than $600 for the year", () => {
-    expect(bandRepo.createTotalForMembersIncomeUnder600()).toEqual(500);
+    expect(bandRepo.calcTotalForMembersIncomeUnder600()).toEqual(500);
   });
 });
