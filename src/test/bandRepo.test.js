@@ -125,4 +125,8 @@ describe("BandRepo", () => {
   test("should calculate total income of all members excluding user", () => {
     expect(bandRepo.calcTotalIncomeAllMembers()).toEqual(9400);
   });
+
+  test("should calculate total income for the user", () => {
+    expect(bandRepo.calcTotalIncomeUser()).toEqual(3000);
+  });
 });

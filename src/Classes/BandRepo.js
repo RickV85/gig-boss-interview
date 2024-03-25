@@ -77,4 +77,8 @@ export class BandRepo {
 
     return totalIncome;
   }
+
+  calcTotalIncomeUser() {
+    return null;
+  }
 }
