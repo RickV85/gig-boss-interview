@@ -5,7 +5,7 @@ import { sampleBandData } from "./sample_data/sample_band";
 
 describe("Band", () => {
   let band;
-  
+
   beforeEach(() => {
     band = new Band(sampleBandData);
   });
@@ -55,5 +55,23 @@ describe("Band", () => {
     const totalBandIncome = band.findBandIncomeForYear();
 
     expect(totalBandIncome).toEqual(750);
+  });
+
+  test("should have default band name if missing", () => {
+    const missingName = new Band({
+      band_name: "",
+      members: [
+        {
+          name: "You",
+          income: 300,
+        },
+        {
+          name: "Yuki",
+          income: 200,
+        },
+      ],
+    });
+
+    expect(missingName.bandName).toBe("Unknown band");
   });
 });
