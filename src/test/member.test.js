@@ -20,4 +20,14 @@ describe("Member", () => {
     expect(name).toEqual("Deepak");
     expect(income).toEqual(2700);
   });
+
+  test("should have default values for properties", () => {
+    const missingInfo = { name: "", income: undefined };
+
+    const name = missingInfo.name;
+    const income = missingInfo.income;
+
+    expect(name).toEqual("Unknown");
+    expect(income).toEqual(0);
+  });
 });

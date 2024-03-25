@@ -5,6 +5,7 @@ import { sampleBandData } from "./sample_data/sample_band";
 
 describe("Band", () => {
   let band;
+  
   beforeEach(() => {
     band = new Band(sampleBandData);
   });
