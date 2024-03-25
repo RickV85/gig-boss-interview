@@ -137,4 +137,8 @@ describe("BandRepo", () => {
     expect(emptyBandRepo).toBeInstanceOf(BandRepo);
     expect(emptyBandRepo.bands).toEqual([]);
   });
+
+  test("should return zero income if no bands in repo", () => {
+    expect(emptyBandRepo.calcTotalIncomeAllBands()).toEqual(0);
+  })
 });
