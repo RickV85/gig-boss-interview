@@ -40,6 +40,14 @@ export class BandRepo {
   }
 
   createTotalForMembersIncomeOver600() {
-    return null;
+    const allMembersYearlyTotal = this.createYearlyTotalIncomeByMember();
+    const memIncomeSum = allMembersYearlyTotal.reduce((sum, mem) => {
+      if (mem.income >= 600) {
+        sum += mem.income;
+      }
+      return sum;
+    }, 0);
+
+    return memIncomeSum;
   }
 }
