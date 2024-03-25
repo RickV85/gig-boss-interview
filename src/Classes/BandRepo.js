@@ -62,4 +62,8 @@ export class BandRepo {
 
     return memIncomeSum;
   }
+
+  calcTotalIncomeAllMembers() {
+    return null;
+  }
 }
