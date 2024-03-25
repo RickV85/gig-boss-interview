@@ -38,4 +38,8 @@ export class BandRepo {
 
     return Object.values(hashMap);
   }
+
+  createTotalForMembersIncomeOver600() {
+    return null;
+  }
 }

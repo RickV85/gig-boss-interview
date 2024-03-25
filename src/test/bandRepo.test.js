@@ -113,4 +113,8 @@ describe("BandRepo", () => {
       },
     ]);
   });
+
+  test("should create total for band members with income of at least $600 for the year", () => {
+    expect(bandRepo.createTotalForMembersIncomeOver600()).toEqual(8900);
+  });
 });
