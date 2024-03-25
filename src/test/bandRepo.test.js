@@ -5,9 +5,11 @@ import { sampleBandRepoData } from "./sample_data/sample_band_repo";
 
 describe("BandRepo", () => {
   let bandRepo;
-  
+  let emptyBandRepo;
+
   beforeEach(() => {
     bandRepo = new BandRepo(sampleBandRepoData);
+    emptyBandRepo = new BandRepo([]);
   });
 
   test("should be an instance of BandRepo", () => {
@@ -130,4 +132,8 @@ describe("BandRepo", () => {
   test("should calculate total income for the user", () => {
     expect(bandRepo.calcTotalIncomeUser()).toEqual(3000);
   });
+
+  test("should initialize BandRepo if no bands provided", () => {
+    expect(emptyBandRepo).toBeInstanceOf(BandRepo);
+  })
 });
