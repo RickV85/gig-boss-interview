@@ -64,6 +64,17 @@ export class BandRepo {
   }
 
   calcTotalIncomeAllMembers() {
-    return null;
+    const totalIncome = this.bands.reduce((total, band) => {
+      const bandTotal = band.members.reduce((bandSum, mem) => {
+        if (mem.name.toLowerCase() !== "you") {
+          bandSum += mem.income;
+        }
+        return bandSum;
+      }, 0);
+      total += bandTotal;
+      return total;
+    }, 0);
+
+    return totalIncome;
   }
 }
