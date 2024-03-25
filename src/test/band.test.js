@@ -93,7 +93,7 @@ describe("Band", () => {
     expect(missingUserIncome.findUserIncome()).toBe(0);
   });
 
-  test("should return 0 if user income falsy", () => {
+  test("should calculate total band income if a value is falsy", () => {
     const missingMemberIncome = new Band({
       band_name: "",
       members: [
