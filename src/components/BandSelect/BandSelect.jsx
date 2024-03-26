@@ -1,6 +1,11 @@
-import { array, func, string } from "prop-types";
+import { array, func, string, PropTypes } from "prop-types";
 
-export default function BandSelect({ bands, selectedBandName, setSelectedBandName }) {
+export default function BandSelect({
+  bands,
+  selectedBandName,
+  setSelectedBandName,
+  bandSelectRef,
+}) {
   const handleSelect = (value) => {
     setSelectedBandName(value);
   };
@@ -21,6 +26,7 @@ export default function BandSelect({ bands, selectedBandName, setSelectedBandNam
       value={selectedBandName}
       onChange={(e) => handleSelect(e.target.value)}
       className="band-select"
+      ref={bandSelectRef}
     >
       <option value={""} disabled>
         Income by Band
@@ -34,4 +40,7 @@ BandSelect.propTypes = {
   bands: array,
   selectedBandName: string,
   setSelectedBandName: func,
+  bandSelectRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element),
+  }),
 };

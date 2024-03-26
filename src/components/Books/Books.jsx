@@ -4,7 +4,6 @@ import IncomeDisplay from "../IncomeDisplay/IncomeDisplay";
 import TotalIncome from "../TotalIncome/TotalIncome";
 import { object } from "prop-types";
 import { useEffect, useRef, useState } from "react";
-import { BandRepo } from "../../Classes/BandRepo";
 
 export default function Books({ bandRepo }) {
   const [grandTotal, setGrandTotal] = useState(0);
@@ -13,9 +12,10 @@ export default function Books({ bandRepo }) {
   const [selectedBand, setSelectedBand] = useState(undefined);
   const [memViewActive, setMemViewActive] = useState(false);
   const booksBtnRef = useRef(undefined);
+  const bandSelectRef = useRef(undefined);
 
   useEffect(() => {
-    if (!bandRepo || !(bandRepo instanceof BandRepo)) return;
+    if (!bandRepo) return;
     if (!grandTotal) {
       setGrandTotal(bandRepo.calcTotalIncomeAllBands());
     }
@@ -24,13 +24,20 @@ export default function Books({ bandRepo }) {
     }
   }, [bandRepo, bands, grandTotal]);
 
+  // Find band in band repo when name is selected in BandSelect
   useEffect(() => {
-    if (selectedBandName && bandRepo) {
+    if (
+      selectedBandName &&
+      selectedBandName !== selectedBand?.bandName &&
+      bandRepo
+    ) {
       const foundBand = bandRepo.findBandByName(selectedBandName);
       setSelectedBand(foundBand);
+      if (memViewActive) setMemViewActive(false);
     }
-  }, [selectedBandName, bandRepo]);
+  }, [selectedBandName, selectedBand, bandRepo, memViewActive]);
 
+  // Add active class to Income by Musician if in member view
   useEffect(() => {
     if (!booksBtnRef.current) return;
     if (memViewActive) {
@@ -40,7 +47,18 @@ export default function Books({ bandRepo }) {
     }
   }, [memViewActive]);
 
+  // Add active class to BandSelect if band is selected
+  useEffect(() => {
+    if (!bandSelectRef) return;
+    if (selectedBand) {
+      bandSelectRef.current.classList.add("active");
+    } else {
+      bandSelectRef.current.classList.remove("active");
+    }
+  }, [selectedBand]);
+
   const handleMemViewClick = () => {
+    if (selectedBandName) setSelectedBandName("");
     if (selectedBand) setSelectedBand(null);
     // Toggle memViewActive based on current state
     memViewActive ? setMemViewActive(false) : setMemViewActive(true);
@@ -62,6 +80,7 @@ export default function Books({ bandRepo }) {
         bands={bands}
         selectedBandName={selectedBandName}
         setSelectedBandName={setSelectedBandName}
+        bandSelectRef={bandSelectRef}
       />
       <button
         className="books-btn"
