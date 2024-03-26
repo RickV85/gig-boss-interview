@@ -9,16 +9,35 @@ export default function IncomeDisplay({ selectedBand }) {
     }
   };
 
+  const bandMemberIncomeDisplay = () => {
+    if (selectedBand) {
+      const memberIncome = selectedBand.members.map((mem, i) => {
+        let name = mem.name;
+        const income = mem.income;
+        if (name.toLowerCase() === "you") {
+          name = "My Income";
+        }
+        return <p key={`memIncome-${i}`}>{`${name}: $${income}`}</p>;
+      });
+      return memberIncome;
+    } else {
+      return null;
+    }
+  };
+
   const bandIncomeDisplay = () => {
     if (selectedBand) {
       return (
-        <header className="income-display-header">
-          <h3>{selectedBand.bandName}</h3>
-          <div className="total-band-income-div">
-            <h4>Total Band Income:</h4>
-            <p>${bandTotalIncome()}</p>
-          </div>
-        </header>
+        <>
+          <header className="income-display-header">
+            <h3>{selectedBand.bandName}</h3>
+            <div className="total-band-income-div">
+              <h4>Total Band Income:</h4>
+              <p>${bandTotalIncome()}</p>
+            </div>
+          </header>
+          <div>{bandMemberIncomeDisplay()}</div>
+        </>
       );
     } else {
       return null;
