@@ -167,4 +167,30 @@ describe("BandRepo", () => {
   test("calcTotalUserIncome should return 0 for empty band repo", () => {
     expect(emptyBandRepo.calcTotalUserIncome()).toEqual(0);
   });
+
+  test("should have method to return Band by name", () => {
+    expect(
+      bandRepo.findBandByName("Melody Makers").toEqual({
+        band_name: "Melody Makers",
+        members: [
+          {
+            name: "You",
+            income: 400,
+          },
+          {
+            name: "Liam",
+            income: 500,
+          },
+          {
+            name: "Aisha",
+            income: 600,
+          },
+          {
+            name: "Raj",
+            income: 700,
+          },
+        ],
+      })
+    );
+  });
 });

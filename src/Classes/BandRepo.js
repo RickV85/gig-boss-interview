@@ -71,4 +71,13 @@ export class BandRepo {
 
     return totalIncome;
   }
+
+  findBandByName(name) {
+    let foundBand;
+    if (name && bands?.length) {
+      foundBand = bands.find((band) => band.bandName === name);
+    } else {
+      return foundBand ? foundBand : null;
+    }
+  }
 }
