@@ -90,7 +90,7 @@ export default function Books({ bandRepo }) {
       <section className="income-display">
         {!selectedBand && !memViewActive ? (
           <p style={{ marginTop: "1rem" }}>
-            Select a band above to view their books!
+            Select band or musician view above!
           </p>
         ) : null}
         {selectedBand && <IncomeDisplay selectedBand={selectedBand} />}

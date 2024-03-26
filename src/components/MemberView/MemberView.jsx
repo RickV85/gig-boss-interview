@@ -1,16 +1,17 @@
 import { object } from "prop-types";
 import { sortByNameUserFirst } from "../../utils/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MemberView({ bandRepo }) {
   const [searchValue, setSearchValue] = useState("");
   const [filterSelection, setFilterSelection] = useState("all");
+  const [memberDisplay, setMemberDisplay] = useState(undefined);
 
-  const createAllMemberIncomeDisplay = () => {
-    const sortedMemArr = sortByNameUserFirst(
-      bandRepo.createYearlyTotalIncomeByMember()
-    );
+  const sortedMemArr = sortByNameUserFirst(
+    bandRepo.createYearlyTotalIncomeByMember()
+  );
 
+  const createUnfilteredDisplay = () => {
     const memberElements = sortedMemArr.map((mem, i) => {
       let memClass = "mem-inc";
       if (mem.income >= 600) {
@@ -25,6 +26,35 @@ export default function MemberView({ bandRepo }) {
     });
     return memberElements;
   };
+
+  const createFilteredDisplay = (arr) => {
+    const memberElements = arr.map((mem, i) => (
+      <p key={`allMemInc-${i}`}>{`${mem.name}: $${mem.income}`}</p>
+    ));
+
+    return memberElements;
+  };
+
+  const updateMemberDisplay = () => {
+    if (!sortedMemArr) return;
+    switch (filterSelection) {
+      case "all":
+        return setMemberDisplay(createUnfilteredDisplay());
+      case "over600": {
+        const over600 = sortedMemArr.filter((mem) => mem.income >= 600);
+        return setMemberDisplay(createFilteredDisplay(over600));
+      }
+      case "under600": {
+        const under600 = sortedMemArr.filter((mem) => mem.income < 600);
+        return setMemberDisplay(createFilteredDisplay(under600));
+      }
+    }
+  };
+
+  useEffect(() => {
+    updateMemberDisplay();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterSelection]);
 
   return (
     <>
@@ -50,9 +80,7 @@ export default function MemberView({ bandRepo }) {
         <h3>All Members</h3>
         <h4>{`My Income: $${bandRepo.calcTotalUserIncome()}`}</h4>
       </header>
-      <div className="income-display-members">
-        {createAllMemberIncomeDisplay()}
-      </div>
+      <div className="income-display-members">{memberDisplay}</div>
     </>
   );
 }
