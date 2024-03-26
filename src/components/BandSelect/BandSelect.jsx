@@ -1,8 +1,8 @@
 import { array, func, string } from "prop-types";
 
-export default function BandSelect({ bands, selectedBand, setSelectedBand }) {
+export default function BandSelect({ bands, selectedBandName, setSelectedBandName }) {
   const handleSelect = (value) => {
-    setSelectedBand(value);
+    setSelectedBandName(value);
   };
 
   const createBandOptions = () => {
@@ -18,7 +18,7 @@ export default function BandSelect({ bands, selectedBand, setSelectedBand }) {
 
   return (
     <select
-      value={selectedBand}
+      value={selectedBandName}
       onChange={(e) => handleSelect(e.target.value)}
       className="band-select"
     >
@@ -32,6 +32,6 @@ export default function BandSelect({ bands, selectedBand, setSelectedBand }) {
 
 BandSelect.propTypes = {
   bands: array,
-  selectedBand: string,
-  setSelectedBand: func,
+  selectedBandName: string,
+  setSelectedBandName: func,
 };
