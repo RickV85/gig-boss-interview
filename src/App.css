@@ -13,7 +13,7 @@ button,
 select {
   border: none;
   border-radius: 20px;
-  background-color: #D2D7D4;
+  background-color: #d2d7d4;
   color: #000;
   cursor: pointer;
 }
@@ -57,4 +57,8 @@ p {
 .api-error-div > p {
   color: #ffffff;
   font-weight: 800;
+}
+
+.over-600 {
+  color: green;
 }

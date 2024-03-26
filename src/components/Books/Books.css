@@ -82,6 +82,14 @@ main {
   text-align: center;
 }
 
+.mem-view-input-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 0.5rem 0.5rem 0.5rem;
+  width: 100%;
+}
+
 .income-display-members {
   display: flex;
   flex-direction: column;
@@ -92,6 +100,16 @@ main {
   font-size: 1.1rem;
 }
 
-.over-600 {
-  color: green;
+.mem-view-input,
+.mem-view-select {
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffffff;
+  width: 40%;
+  max-width: 12rem;
+}
+
+.mem-view-input::placeholder {
+  color: #8f9591;
 }
