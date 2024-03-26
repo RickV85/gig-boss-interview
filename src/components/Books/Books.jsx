@@ -94,7 +94,7 @@ export default function Books({ bandRepo }) {
           </p>
         ) : null}
         {selectedBand && <IncomeDisplay selectedBand={selectedBand} />}
-        {memViewActive && <MemberView />}
+        {memViewActive && bandRepo && <MemberView bandRepo={bandRepo} />}
       </section>
     </main>
   );
