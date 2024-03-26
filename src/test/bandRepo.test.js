@@ -147,11 +147,14 @@ describe("BandRepo", () => {
   });
 
   test("calcTotalForMembersIncomeInRange should return 0 for empty band repo", () => {
-    expect(emptyBandRepo.calcTotalForMembersIncomeInRange()).toEqual(0);
+    expect(emptyBandRepo.calcTotalForMembersIncomeInRange(0, Infinity)).toEqual(0);
   });
 
-  test("calcTotalForMembersIncomeInRange should return total of all member income if no args provided", () => {
-    expect(bandRepo.calcTotalForMembersIncomeInRange()).toEqual(9400);
+  test("calcTotalForMembersIncomeInRange should return null if non-number args provided", () => {
+    expect(bandRepo.calcTotalForMembersIncomeInRange()).toEqual(null);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(null, 600)).toEqual(null);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(0, null)).toEqual(null);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(0)).toEqual(null);
   });
 
   test("calcTotalForMembersIncomeInRange should only use numbers provided as args", () => {
