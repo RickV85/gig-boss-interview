@@ -11,8 +11,8 @@ export default function Books({ bandRepo }) {
   const [selectedBandName, setSelectedBandName] = useState("");
   const [selectedBand, setSelectedBand] = useState(undefined);
   const [memViewActive, setMemViewActive] = useState(false);
-  const booksBtnRef = useRef(undefined);
   const bandSelectRef = useRef(undefined);
+  const incomeByMusicianRef = useRef(undefined);
 
   useEffect(() => {
     if (!bandRepo) return;
@@ -37,25 +37,21 @@ export default function Books({ bandRepo }) {
     }
   }, [selectedBandName, selectedBand, bandRepo, memViewActive]);
 
-  // Add active class to Income by Musician if in member view
-  useEffect(() => {
-    if (!booksBtnRef.current) return;
-    if (memViewActive) {
-      booksBtnRef.current.classList.add("active");
-    } else {
-      booksBtnRef.current.classList.remove("active");
-    }
-  }, [memViewActive]);
-
-  // Add active class to BandSelect if band is selected
+  // Add active class to BandSelect or Income by Musician depending on
+  // which view is active
   useEffect(() => {
     if (!bandSelectRef) return;
     if (selectedBand) {
       bandSelectRef.current.classList.add("active");
+      incomeByMusicianRef.current.classList.remove("active");
+    } else if (memViewActive) {
+      bandSelectRef.current.classList.remove("active");
+      incomeByMusicianRef.current.classList.add("active");
     } else {
       bandSelectRef.current.classList.remove("active");
+      incomeByMusicianRef.current.classList.remove("active");
     }
-  }, [selectedBand]);
+  }, [selectedBand, memViewActive]);
 
   const handleMemViewClick = () => {
     if (selectedBandName) setSelectedBandName("");
@@ -85,7 +81,7 @@ export default function Books({ bandRepo }) {
       <button
         className="books-btn"
         onClick={() => handleMemViewClick()}
-        ref={booksBtnRef}
+        ref={incomeByMusicianRef}
       >
         Income by Musician
       </button>
