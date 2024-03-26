@@ -43,7 +43,29 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+}
+
+.income-display-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid #808f855f;
+}
+
+.total-band-income-div {
+  display: flex;
+  align-items: center;
+}
+
+.total-band-income-div > h4 {
+  font-weight: 400;
+}
+
+.total-band-income-div > p {
+  margin-left: 0.3rem;
 }
 
 .no-band-data-msg {
