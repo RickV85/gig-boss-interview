@@ -47,17 +47,11 @@ export default function IncomeDisplay({ selectedBand }) {
     }
   };
 
-  return (
-    <section className="income-display">
-      {selectedBand ? (
-        bandIncomeDisplay()
-      ) : (
-        <p style={{ marginTop: "1rem" }}>
-          Select a band above to view their books!
-        </p>
-      )}
-    </section>
-  );
+  if (selectedBand) {
+    return bandIncomeDisplay();
+  } else {
+    return null;
+  }
 }
 
 IncomeDisplay.propTypes = {

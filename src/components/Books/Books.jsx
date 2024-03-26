@@ -11,6 +11,7 @@ export default function Books({ bandRepo }) {
   const [bands, setBands] = useState(undefined);
   const [selectedBandName, setSelectedBandName] = useState("");
   const [selectedBand, setSelectedBand] = useState(undefined);
+  const [memViewActive, setMemViewActive] = useState(false);
 
   useEffect(() => {
     if (!bandRepo || !(bandRepo instanceof BandRepo)) return;
@@ -48,7 +49,14 @@ export default function Books({ bandRepo }) {
       />
       <button className="books-btn">Income by Musician</button>
       <button className="books-btn">Export Data</button>
-      <IncomeDisplay selectedBand={selectedBand} />
+      <section className="income-display">
+        {!selectedBand && !memViewActive ? (
+          <p style={{ marginTop: "1rem" }}>
+            Select a band above to view their books!
+          </p>
+        ) : null}
+        <IncomeDisplay selectedBand={selectedBand} />
+      </section>
     </main>
   );
 }
