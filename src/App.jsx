@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import Books from "./components/Books/Books";
+import { BandRepo } from "./Classes/BandRepo";
 import { Routes, Route } from "react-router-dom";
+import { fetchBandData } from "./utils/apicalls";
 
 export default function App() {
+  const [bandData, setBandData] = useState();
+  const [apiError, setApiError] = useState();
+
+  useEffect(() => {
+    if (!bandData) {
+      getBandData();
+    }
+  }, [bandData]);
+
+  const getBandData = async () => {
+    try {
+      const data = await fetchBandData();
+      if (data && data.bands) {
+        setBandData(new BandRepo(data));
+      }
+    } catch (error) {
+      setApiError(
+        "An error occurred while fetching your band data, please refresh the page.",
+        error
+      );
+    }
+  };
+
   return (
     <>
       <nav className="gigboss-nav">
