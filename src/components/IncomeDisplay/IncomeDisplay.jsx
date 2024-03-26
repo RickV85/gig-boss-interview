@@ -36,7 +36,9 @@ export default function IncomeDisplay({ selectedBand }) {
               <p>${bandTotalIncome()}</p>
             </div>
           </header>
-          <div>{bandMemberIncomeDisplay()}</div>
+          <div className="income-display-members">
+            {bandMemberIncomeDisplay()}
+          </div>
         </>
       );
     } else {
@@ -49,7 +51,7 @@ export default function IncomeDisplay({ selectedBand }) {
       {selectedBand ? (
         bandIncomeDisplay()
       ) : (
-        <p>Select a band above to view the books!</p>
+        <p style={{marginTop: "1rem"}}>Select a band above to view their books!</p>
       )}
     </section>
   );
