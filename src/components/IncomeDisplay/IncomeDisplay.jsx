@@ -1,5 +1,5 @@
 import { object } from "prop-types";
-
+import { sortByNameUserFirst } from "../../utils/utils";
 export default function IncomeDisplay({ selectedBand }) {
   const bandTotalIncome = () => {
     if (selectedBand) {
@@ -11,7 +11,8 @@ export default function IncomeDisplay({ selectedBand }) {
 
   const bandMemberIncomeDisplay = () => {
     if (selectedBand) {
-      const memberIncome = selectedBand.members.map((mem, i) => {
+      const sortedMembers = sortByNameUserFirst(selectedBand.members);
+      const memberIncome = sortedMembers.map((mem, i) => {
         let name = mem.name;
         const income = mem.income;
         if (name.toLowerCase() === "you") {
@@ -51,7 +52,9 @@ export default function IncomeDisplay({ selectedBand }) {
       {selectedBand ? (
         bandIncomeDisplay()
       ) : (
-        <p style={{marginTop: "1rem"}}>Select a band above to view their books!</p>
+        <p style={{ marginTop: "1rem" }}>
+          Select a band above to view their books!
+        </p>
       )}
     </section>
   );
