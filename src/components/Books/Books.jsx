@@ -4,6 +4,7 @@ import IncomeDisplay from "../IncomeDisplay/IncomeDisplay";
 import TotalIncome from "../TotalIncome/TotalIncome";
 import { object } from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import MemberView from "../MemberView/MemberView";
 
 export default function Books({ bandRepo }) {
   const [grandTotal, setGrandTotal] = useState(0);
@@ -92,7 +93,8 @@ export default function Books({ bandRepo }) {
             Select a band above to view their books!
           </p>
         ) : null}
-        <IncomeDisplay selectedBand={selectedBand} />
+        {selectedBand && <IncomeDisplay selectedBand={selectedBand} />}
+        {memViewActive && <MemberView />}
       </section>
     </main>
   );
