@@ -169,8 +169,8 @@ describe("BandRepo", () => {
   });
 
   test("should have method to return Band by name", () => {
-    expect(
-      bandRepo.findBandByName("Melody Makers").toEqual({
+    expect(bandRepo.findBandByName("Melody Makers")).toEqual(
+      new Band({
         band_name: "Melody Makers",
         members: [
           {
@@ -192,5 +192,13 @@ describe("BandRepo", () => {
         ],
       })
     );
+  });
+
+  test("findBandByName should return null if no band found", () => {
+    expect(bandRepo.findBandByName("Phish")).toEqual(null);
+  });
+
+  test("findBandByName should work on empty band repo", () => {
+    expect(emptyBandRepo.findBandByName("Phish")).toEqual(null);
   });
 });

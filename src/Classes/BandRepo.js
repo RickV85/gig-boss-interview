@@ -74,10 +74,10 @@ export class BandRepo {
 
   findBandByName(name) {
     let foundBand;
-    if (name && bands?.length) {
-      foundBand = bands.find((band) => band.bandName === name);
-    } else {
-      return foundBand ? foundBand : null;
+    if (name && this.bands?.length) {
+      foundBand = this.bands.find((band) => band.bandName === name);
     }
+    
+    return foundBand ? foundBand : null;
   }
 }
