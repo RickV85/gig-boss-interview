@@ -18,7 +18,8 @@ select {
   cursor: pointer;
 }
 
-button:focus, select:focus {
+button:focus,
+select:focus {
   border-color: #cfd11a;
 }
 
@@ -40,4 +41,20 @@ p {
 
 .gigboss-logo {
   height: 60%;
+}
+
+.api-error-div {
+  text-align: center;
+  width: 80%;
+  max-width: 40rem;
+  padding: 0.25rem;
+  margin: 1rem auto;
+  border: 1px solid #f2460d;
+  border-radius: 5px;
+  background-color: #f2460d;
+}
+
+.api-error-div > p {
+  color: #ffffff;
+  font-weight: 800;
 }

@@ -7,7 +7,7 @@ import { fetchBandData } from "./utils/apicalls";
 
 export default function App() {
   const [bandData, setBandData] = useState();
-  const [apiError, setApiError] = useState();
+  const [apiError, setApiError] = useState("");
 
   useEffect(() => {
     if (!bandData) {
@@ -21,10 +21,9 @@ export default function App() {
       if (data && data.bands) {
         setBandData(new BandRepo(data));
       }
-    } catch (error) {
+    } catch {
       setApiError(
-        "An error occurred while fetching your band data, please refresh the page.",
-        error
+        "An error occurred while fetching your band data, please refresh the page."
       );
     }
   };
@@ -40,6 +39,11 @@ export default function App() {
           />
         </div>
       </nav>
+      {apiError ? (
+        <div className="api-error-div">
+          <p>{apiError}</p>
+        </div>
+      ) : null}
       <Routes>
         <Route path="/" element={<Books />} />
       </Routes>
