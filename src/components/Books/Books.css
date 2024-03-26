@@ -79,9 +79,9 @@ main {
 .income-display-members {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.2rem;
   height: 100%;
-  margin: auto;
+  margin: 1rem auto;
   font-size: 1.1rem;
 }
