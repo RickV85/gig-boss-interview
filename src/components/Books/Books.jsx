@@ -7,14 +7,20 @@ import { useEffect, useState } from "react";
 import { BandRepo } from "../../Classes/BandRepo";
 
 export default function Books({ bandData }) {
-  const [grandTotal, setGrandTotal] = useState();
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [bands, setBands] = useState(undefined);
+  const [selectedBand, setSelectedBand] = useState("");
 
   useEffect(() => {
-    if (bandData && bandData instanceof BandRepo) {
+    if (!bandData || !(bandData instanceof BandRepo)) return;
+    if (!grandTotal) {
       setGrandTotal(bandData.calcTotalIncomeAllBands());
     }
-  }, [bandData]);
-  
+    if (!bands && bandData?.bands) {
+      setBands(bandData.bands);
+    }
+  }, [bandData, bands, grandTotal]);
+
   return (
     <main>
       <h1 className="books-header">Books</h1>
@@ -27,7 +33,11 @@ export default function Books({ bandData }) {
         </div>
       ) : null}
       <TotalIncome total={grandTotal} />
-      <BandSelect />
+      <BandSelect
+        bands={bands}
+        selectedBand={selectedBand}
+        setSelectedBand={setSelectedBand}
+      />
       <button className="books-btn">Income by Musician</button>
       <button className="books-btn">Export Data</button>
       <IncomeDisplay />

@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import { fetchBandData } from "./utils/apicalls";
 
 export default function App() {
-  const [bandData, setBandData] = useState();
+  const [bandData, setBandData] = useState(undefined);
   const [apiError, setApiError] = useState("");
 
   useEffect(() => {

@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { array, func, string } from "prop-types";
 
-export default function BandSelect() {
-  const [selectedBand, setSelectedBand] = useState("");
+export default function BandSelect({ bands, selectedBand, setSelectedBand }) {
+  const handleSelect = (value) => {
+    setSelectedBand(value);
+  };
 
-  const handleSelect = (selection) => {
-    setSelectedBand(selection);
+  const createBandOptions = () => {
+    if (bands && bands.length) {
+      const bandOptions = bands.map((band, i) => (
+        <option value={band.bandName} key={`bandOpt-${i}`}>
+          {band.bandName}
+        </option>
+      ));
+      return bandOptions;
+    }
   };
 
   return (
@@ -16,9 +25,13 @@ export default function BandSelect() {
       <option value={""} disabled>
         Income by Band
       </option>
-      <option>Band 1</option>
-      <option>Band 2</option>
-      <option>Band 3</option>
+      {createBandOptions()}
     </select>
   );
 }
+
+BandSelect.propTypes = {
+  bands: array,
+  selectedBand: string,
+  setSelectedBand: func,
+};
