@@ -6,20 +6,20 @@ import { Routes, Route } from "react-router-dom";
 import { fetchBandData } from "./utils/apicalls";
 
 export default function App() {
-  const [bandData, setBandData] = useState(undefined);
+  const [bandRepo, setBandRepo] = useState(undefined);
   const [apiError, setApiError] = useState("");
 
   useEffect(() => {
-    if (!bandData) {
+    if (!bandRepo) {
       getBandData();
     }
-  }, [bandData]);
+  }, [bandRepo]);
 
   const getBandData = async () => {
     try {
       const data = await fetchBandData();
       if (data && data.bands) {
-        setBandData(new BandRepo(data));
+        setBandRepo(new BandRepo(data));
       }
     } catch {
       setApiError(
@@ -45,7 +45,7 @@ export default function App() {
         </div>
       ) : null}
       <Routes>
-        <Route path="/" element={<Books bandData={bandData} />} />
+        <Route path="/" element={<Books bandRepo={bandRepo} />} />
       </Routes>
     </>
   );

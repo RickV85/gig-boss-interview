@@ -6,25 +6,25 @@ import { object } from "prop-types";
 import { useEffect, useState } from "react";
 import { BandRepo } from "../../Classes/BandRepo";
 
-export default function Books({ bandData }) {
+export default function Books({ bandRepo }) {
   const [grandTotal, setGrandTotal] = useState(0);
   const [bands, setBands] = useState(undefined);
   const [selectedBand, setSelectedBand] = useState("");
 
   useEffect(() => {
-    if (!bandData || !(bandData instanceof BandRepo)) return;
+    if (!bandRepo || !(bandRepo instanceof BandRepo)) return;
     if (!grandTotal) {
-      setGrandTotal(bandData.calcTotalIncomeAllBands());
+      setGrandTotal(bandRepo.calcTotalIncomeAllBands());
     }
-    if (!bands && bandData?.bands) {
-      setBands(bandData.bands);
+    if (!bands && bandRepo?.bands) {
+      setBands(bandRepo.bands);
     }
-  }, [bandData, bands, grandTotal]);
+  }, [bandRepo, bands, grandTotal]);
 
   return (
     <main>
       <h1 className="books-header">Books</h1>
-      {bandData && !bandData.bands.length ? (
+      {bandRepo && !bandRepo.bands.length ? (
         <div>
           <p className="no-band-data-msg">
             No band data to display, add some bands to view the Books for each
@@ -46,5 +46,5 @@ export default function Books({ bandData }) {
 }
 
 Books.propTypes = {
-  bandData: object,
+  bandRepo: object,
 };
