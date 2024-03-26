@@ -42,11 +42,13 @@ export class BandRepo {
   }
 
   calcTotalForMembersIncomeInRange(min, max) {
+    const badArg = (arg) =>
+      arg === undefined || arg === null || typeof arg !== "number";
+    if ([min, max].some(badArg)) return null;
+
     const allMembersYearlyTotal = this.createYearlyTotalIncomeByMember();
-    const minIncome = min && typeof min === "number" ? min : 0;
-    const maxIncome = max && typeof max === "number" ? max : Infinity;
     const memIncomeSum = allMembersYearlyTotal.reduce((sum, mem) => {
-      if (mem.income >= minIncome && mem.income < maxIncome) {
+      if (mem.income >= min && mem.income < max) {
         sum += mem.income;
       }
       return sum;
