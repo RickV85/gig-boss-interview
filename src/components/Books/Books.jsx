@@ -3,7 +3,7 @@ import BandSelect from "../BandSelect/BandSelect";
 import IncomeDisplay from "../IncomeDisplay/IncomeDisplay";
 import TotalIncome from "../TotalIncome/TotalIncome";
 import { object } from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BandRepo } from "../../Classes/BandRepo";
 
 export default function Books({ bandRepo }) {
@@ -12,6 +12,7 @@ export default function Books({ bandRepo }) {
   const [selectedBandName, setSelectedBandName] = useState("");
   const [selectedBand, setSelectedBand] = useState(undefined);
   const [memViewActive, setMemViewActive] = useState(false);
+  const booksBtnRef = useRef(undefined);
 
   useEffect(() => {
     if (!bandRepo || !(bandRepo instanceof BandRepo)) return;
@@ -30,7 +31,17 @@ export default function Books({ bandRepo }) {
     }
   }, [selectedBandName, bandRepo]);
 
+  useEffect(() => {
+    if (!booksBtnRef.current) return;
+    if (memViewActive) {
+      booksBtnRef.current.classList.add("active");
+    } else {
+      booksBtnRef.current.classList.remove("active");
+    }
+  }, [memViewActive]);
+
   const handleMemViewClick = () => {
+    if (selectedBand) setSelectedBand(null);
     // Toggle memViewActive based on current state
     memViewActive ? setMemViewActive(false) : setMemViewActive(true);
   };
@@ -52,7 +63,11 @@ export default function Books({ bandRepo }) {
         selectedBandName={selectedBandName}
         setSelectedBandName={setSelectedBandName}
       />
-      <button className="books-btn" onClick={() => handleMemViewClick()}>
+      <button
+        className="books-btn"
+        onClick={() => handleMemViewClick()}
+        ref={booksBtnRef}
+      >
         Income by Musician
       </button>
       <button className="books-btn">Export Data</button>

@@ -33,6 +33,10 @@ main {
   text-align: center;
 }
 
+.books-btn.active {
+  background-color: #cfd11a;
+}
+ 
 .income-display {
   height: 100%;
   min-height: 40vh;
