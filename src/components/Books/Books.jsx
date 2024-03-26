@@ -30,6 +30,11 @@ export default function Books({ bandRepo }) {
     }
   }, [selectedBandName, bandRepo]);
 
+  const handleMemViewClick = () => {
+    // Toggle memViewActive based on current state
+    memViewActive ? setMemViewActive(false) : setMemViewActive(true);
+  };
+
   return (
     <main>
       <h1 className="books-header">Books</h1>
@@ -47,7 +52,9 @@ export default function Books({ bandRepo }) {
         selectedBandName={selectedBandName}
         setSelectedBandName={setSelectedBandName}
       />
-      <button className="books-btn">Income by Musician</button>
+      <button className="books-btn" onClick={() => handleMemViewClick()}>
+        Income by Musician
+      </button>
       <button className="books-btn">Export Data</button>
       <section className="income-display">
         {!selectedBand && !memViewActive ? (
