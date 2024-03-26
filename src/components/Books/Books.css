@@ -91,3 +91,7 @@ main {
   margin: 1rem auto;
   font-size: 1.1rem;
 }
+
+.over-600 {
+  color: green;
+}

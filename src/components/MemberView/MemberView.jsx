@@ -6,9 +6,18 @@ export default function MemberView({ bandRepo }) {
     const sortedMemArr = sortByNameUserFirst(
       bandRepo.createYearlyTotalIncomeByMember()
     );
-    const memberElements = sortedMemArr.map((mem, i) => (
-      <p key={`allMemInc-${i}`}>{`${mem.name}: $${mem.income}`}</p>
-    ));
+    const memberElements = sortedMemArr.map((mem, i) => {
+      let memClass = "mem-inc";
+      if (mem.income >= 600) {
+        memClass += " over-600";
+      }
+      return (
+        <p
+          className={memClass}
+          key={`allMemInc-${i}`}
+        >{`${mem.name}: $${mem.income}`}</p>
+      );
+    });
     return memberElements;
   };
 
