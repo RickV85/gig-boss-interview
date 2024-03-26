@@ -1,7 +1,7 @@
+import "./Books.css";
 import BandSelect from "../BandSelect/BandSelect";
 import IncomeDisplay from "../IncomeDisplay/IncomeDisplay";
 import TotalIncome from "../TotalIncome/TotalIncome";
-import "./Books.css"
 
 export default function Books() {
   return (
