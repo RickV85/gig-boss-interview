@@ -22,11 +22,12 @@ export default function Books({ bandRepo }) {
     }
   }, [bandRepo, bands, grandTotal]);
 
-  // useEffect(() => {
-  //   if (selectedBandName && bandRepo) {
-
-  //   }
-  // }, [selectedBandName])
+  useEffect(() => {
+    if (selectedBandName && bandRepo) {
+      const foundBand = bandRepo.findBandByName(selectedBandName);
+      setSelectedBand(foundBand);
+    }
+  }, [selectedBandName, bandRepo]);
 
   return (
     <main>
@@ -47,7 +48,7 @@ export default function Books({ bandRepo }) {
       />
       <button className="books-btn">Income by Musician</button>
       <button className="books-btn">Export Data</button>
-      <IncomeDisplay />
+      <IncomeDisplay selectedBand={selectedBand} />
     </main>
   );
 }
