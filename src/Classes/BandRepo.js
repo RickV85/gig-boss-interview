@@ -57,7 +57,7 @@ export class BandRepo {
     return memIncomeSum;
   }
 
-  calcTotalIncomeUser() {
+  calcTotalUserIncome() {
     const totalIncome = this.bands.reduce((total, band) => {
       const userTotal = band.members.reduce((userSum, mem) => {
         if (mem.name.toLowerCase() === "you") {

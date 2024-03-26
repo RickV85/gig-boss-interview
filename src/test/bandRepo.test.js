@@ -118,7 +118,9 @@ describe("BandRepo", () => {
   });
 
   test("should calculate total for band members excluding user with income of at least $600 for the year", () => {
-    expect(bandRepo.calcTotalForMembersIncomeInRange(600, Infinity)).toEqual(8900);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(600, Infinity)).toEqual(
+      8900
+    );
   });
 
   test("should calculate total for band members excluding user with income of less than $600 for the year", () => {
@@ -126,11 +128,13 @@ describe("BandRepo", () => {
   });
 
   test("should calculate total income of all members excluding user", () => {
-    expect(bandRepo.calcTotalForMembersIncomeInRange(0, Infinity)).toEqual(9400);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(0, Infinity)).toEqual(
+      9400
+    );
   });
 
   test("should calculate total income for the user", () => {
-    expect(bandRepo.calcTotalIncomeUser()).toEqual(3000);
+    expect(bandRepo.calcTotalUserIncome()).toEqual(3000);
   });
 
   test("should initialize BandRepo if no bands provided", () => {
@@ -147,7 +151,9 @@ describe("BandRepo", () => {
   });
 
   test("calcTotalForMembersIncomeInRange should return 0 for empty band repo", () => {
-    expect(emptyBandRepo.calcTotalForMembersIncomeInRange(0, Infinity)).toEqual(0);
+    expect(emptyBandRepo.calcTotalForMembersIncomeInRange(0, Infinity)).toEqual(
+      0
+    );
   });
 
   test("calcTotalForMembersIncomeInRange should return null if non-number args provided", () => {
@@ -156,5 +162,9 @@ describe("BandRepo", () => {
     expect(bandRepo.calcTotalForMembersIncomeInRange(0, null)).toEqual(null);
     expect(bandRepo.calcTotalForMembersIncomeInRange("a", true)).toEqual(null);
     expect(bandRepo.calcTotalForMembersIncomeInRange(0)).toEqual(null);
+  });
+
+  test("calcTotalUserIncome should return 0 for empty band repo", () => {
+    expect(emptyBandRepo.calcTotalUserIncome()).toEqual(0);
   });
 });
