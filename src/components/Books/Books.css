@@ -40,3 +40,8 @@ main {
   border-radius: 5px;
   background-color: #808f855f;
 }
+
+.no-band-data-msg {
+  font-weight: 600;
+  text-align: center;
+}

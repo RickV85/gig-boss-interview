@@ -45,7 +45,7 @@ export default function App() {
         </div>
       ) : null}
       <Routes>
-        <Route path="/" element={<Books />} />
+        <Route path="/" element={<Books bandData={bandData} />} />
       </Routes>
     </>
   );
