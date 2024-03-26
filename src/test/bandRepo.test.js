@@ -153,4 +153,10 @@ describe("BandRepo", () => {
   test("calcTotalForMembersIncomeInRange should return total of all member income if no args provided", () => {
     expect(bandRepo.calcTotalForMembersIncomeInRange()).toEqual(9400);
   });
+
+  test("calcTotalForMembersIncomeInRange should only use numbers provided as args", () => {
+    expect(bandRepo.calcTotalForMembersIncomeInRange("a", true)).toEqual(9400);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(true, 600)).toEqual(500);
+    expect(bandRepo.calcTotalForMembersIncomeInRange(600, true)).toEqual(8900);
+  });
 });
