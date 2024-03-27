@@ -1,7 +1,7 @@
 import { array } from "prop-types";
 
 export default function AllMemAggregate({ memArr }) {
-  const createDispElementsFromMemArr = () => {
+  const createDisplayElementsFromMemArr = () => {
     if (memArr?.length) {
       const memberElements = memArr.map((mem, i) => {
         let memClass = "mem-agg-income";
@@ -28,7 +28,7 @@ export default function AllMemAggregate({ memArr }) {
           <h2>Income</h2>
         </header>
         <div className="all-mem-agg-display">
-          {createDispElementsFromMemArr()}
+          {createDisplayElementsFromMemArr()}
         </div>
       </div>
     </section>

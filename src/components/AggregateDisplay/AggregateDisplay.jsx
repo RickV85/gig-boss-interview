@@ -27,7 +27,7 @@ export default function AggregateData({ bandRepo }) {
       ) : (
         <>
           {sortedMemArr && <AllMemAggregate memArr={sortedMemArr} />}
-          <TotalAggregate />
+          {bandRepo && <TotalAggregate bandRepo={bandRepo} />}
         </>
       )}
     </main>
