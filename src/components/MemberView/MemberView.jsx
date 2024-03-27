@@ -1,8 +1,4 @@
 import { object } from "prop-types";
-import {
-  sortByNameUserFirst,
-  searchMemElementsByName,
-} from "../../utils/utils";
 import { useEffect, useState } from "react";
 
 export default function MemberView({ bandRepo }) {
@@ -39,21 +35,21 @@ export default function MemberView({ bandRepo }) {
     return memberElements;
   };
 
-  const updateMemberDisplay = () => {
-    if (!sortedMemArr) return;
-    switch (filterSelection) {
-      case "all":
-        return setMemberDisplay(createUnfilteredDisplay());
-      case "over600": {
-        const over600 = sortedMemArr.filter((mem) => mem.income >= 600);
-        return setMemberDisplay(createFilteredDisplay(over600));
-      }
-      case "under600": {
-        const under600 = sortedMemArr.filter((mem) => mem.income < 600);
-        return setMemberDisplay(createFilteredDisplay(under600));
-      }
-    }
-  };
+  // const updateMemberDisplay = () => {
+  //   if (!sortedMemArr) return;
+  //   switch (filterSelection) {
+  //     case "all":
+  //       return setMemberDisplay(createUnfilteredDisplay());
+  //     case "over600": {
+  //       const over600 = sortedMemArr.filter((mem) => mem.income >= 600);
+  //       return setMemberDisplay(createFilteredDisplay(over600));
+  //     }
+  //     case "under600": {
+  //       const under600 = sortedMemArr.filter((mem) => mem.income < 600);
+  //       return setMemberDisplay(createFilteredDisplay(under600));
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     updateMemberDisplay();
