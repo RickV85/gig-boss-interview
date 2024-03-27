@@ -12,30 +12,23 @@ export default function MemberView({ bandRepo }) {
     return sortByNameUserFirst(memIncomeArr);
   }, [bandRepo]);
 
-  const createUnfilteredDisplay = (memArr) => {
-    // Create styled elements to highlight users with >= $600 income
-    const memberElements = memArr.map((mem, i) => {
-      let memClass = "mem-inc";
-      if (mem.income >= 600) {
-        memClass += " over-600";
-      }
-      return (
-        <p
-          className={memClass}
-          key={`allMemInc-${i}`}
-        >{`${mem.name}: $${mem.income}`}</p>
-      );
-    });
-    return memberElements;
-  };
-
-  const createFilteredDisplay = (memArr) => {
-    // Create elements, not styled, from an array of members
-    const memberElements = memArr.map((mem, i) => (
-      <p key={`allMemInc-${i}`}>{`${mem.name}: $${mem.income}`}</p>
-    ));
-
-    return memberElements;
+  const createDispElementsFromMemArr = (memArr) => {
+    if (memArr?.length) {
+      const memberElements = memArr.map((mem, i) => {
+        let memClass = "mem-inc";
+        // Create styled elements to highlight users with >= $600 income
+        if (mem.income >= 600 && filterSelection === "all") {
+          memClass += " over-600";
+        }
+        return (
+          <p
+            className={memClass}
+            key={`allMemInc-${i}`}
+          >{`${mem.name}: $${mem.income}`}</p>
+        );
+      });
+      return memberElements;
+    }
   };
 
   useEffect(() => {
@@ -48,12 +41,8 @@ export default function MemberView({ bandRepo }) {
       );
 
       // Convert results to elements, if none, show no results found
-      if (filterSelection === "all" && filterAndSearchMemResults?.length) {
-        filterAndSearchMemResults = createUnfilteredDisplay(
-          filterAndSearchMemResults
-        );
-      } else if (filterAndSearchMemResults?.length) {
-        filterAndSearchMemResults = createFilteredDisplay(
+      if (filterAndSearchMemResults?.length) {
+        filterAndSearchMemResults = createDispElementsFromMemArr(
           filterAndSearchMemResults
         );
       } else {
