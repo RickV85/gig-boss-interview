@@ -1,17 +1,19 @@
 import { object } from "prop-types";
-import { useEffect, useState } from "react";
-import { sortByNameUserFirst } from "../../utils/utils";
+import { useEffect, useMemo, useState } from "react";
+import { filterAndSearchMembers, sortByNameUserFirst } from "../../utils/utils";
 
 export default function MemberView({ bandRepo }) {
   const [searchValue, setSearchValue] = useState("");
   const [filterSelection, setFilterSelection] = useState("all");
   const [memberDisplay, setMemberDisplay] = useState(undefined);
 
-  const sortedMemArr = sortByNameUserFirst(
-    bandRepo.createYearlyTotalIncomeByMember()
-  );
+  const sortedMemIncArr = useMemo(() => {
+    const memIncomeArr = bandRepo.createYearlyTotalIncomeByMember();
+    return sortByNameUserFirst(memIncomeArr);
+  }, [bandRepo]);
 
   const createUnfilteredDisplay = (memArr) => {
+    // Create styled elements to highlight users with >= $600 income
     const memberElements = memArr.map((mem, i) => {
       let memClass = "mem-inc";
       if (mem.income >= 600) {
@@ -28,6 +30,7 @@ export default function MemberView({ bandRepo }) {
   };
 
   const createFilteredDisplay = (memArr) => {
+    // Create elements, not styled, from an array of members
     const memberElements = memArr.map((mem, i) => (
       <p key={`allMemInc-${i}`}>{`${mem.name}: $${mem.income}`}</p>
     ));
@@ -36,30 +39,44 @@ export default function MemberView({ bandRepo }) {
   };
 
   useEffect(() => {
-    const initialMemDisplay = createUnfilteredDisplay(sortedMemArr);
-    setMemberDisplay(initialMemDisplay);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // Apply filter and search by name utils to create results
+    if (sortedMemIncArr?.length) {
+      let filterAndSearchMemResults = filterAndSearchMembers(
+        filterSelection,
+        searchValue,
+        sortedMemIncArr
+      );
 
-  // useEffect(() => {
-  //   if (searchValue) {
-  //     const searchResult = searchMemElementsByName(searchValue, memberDisplay);
-  //     if (searchResult) {
-  //       const resultDisplay = (
-  //         <>
-  //           <h4>Search by name results</h4>
-  //           {searchResult}
-  //         </>
-  //       );
-  //       setSearchDisplay(resultDisplay);
-  //     } else {
-  //       setSearchDisplay(<h4>No search results</h4>);
-  //     }
-  //   } else {
-  //     setSearchDisplay(null);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [searchValue, filterSelection]);
+      // Convert results to elements, if none, show no results found
+      if (filterSelection === "all" && filterAndSearchMemResults?.length) {
+        filterAndSearchMemResults = createUnfilteredDisplay(
+          filterAndSearchMemResults
+        );
+      } else if (filterAndSearchMemResults?.length) {
+        filterAndSearchMemResults = createFilteredDisplay(
+          filterAndSearchMemResults
+        );
+      } else {
+        return setMemberDisplay(<h4>No search results</h4>);
+      }
+
+      // If a search value, indicate the user is searching by name on DOM
+      if (searchValue) {
+        const resultDisplay = (
+          <>
+            <h4>Search by name results</h4>
+            {filterAndSearchMemResults}
+          </>
+        );
+        setMemberDisplay(resultDisplay);
+      } else {
+        setMemberDisplay(filterAndSearchMemResults);
+      }
+    } else {
+      // If no members in sortedMemIncArr show message to user
+      return <h4>No members to display</h4>;
+    }
+  }, [searchValue, filterSelection, sortedMemIncArr]);
 
   return (
     <>
@@ -85,9 +102,7 @@ export default function MemberView({ bandRepo }) {
         <h3>All Members</h3>
         <h4>{`My Income: $${bandRepo.calcTotalUserIncome()}`}</h4>
       </header>
-      <div className="income-display-members">
-        {memberDisplay}
-      </div>
+      <div className="income-display-members">{memberDisplay}</div>
     </>
   );
 }

@@ -18,14 +18,14 @@ export const filterMembersByIncome = (filterStr, memArr) => {
   if (!filterStr || !memArr?.length) return;
   switch (filterStr) {
     case "all":
-      return sortByNameUserFirst(memArr);
+      return memArr;
     case "over600": {
       const over600 = memArr.filter((mem) => mem.income >= 600);
-      return sortByNameUserFirst(over600);
+      return over600;
     }
     case "under600": {
       const under600 = memArr.filter((mem) => mem.income < 600);
-      return sortByNameUserFirst(under600);
+      return under600;
     }
   }
 };
@@ -45,9 +45,9 @@ export const searchMembersByName = (searchValue, memArr) => {
 };
 
 export const filterAndSearchMembers = (filterStr, searchValue, memArr) => {
-  let resultMemArr = memArr.filterMembersByIncome(filterStr, memArr);
+  let resultMemArr = filterMembersByIncome(filterStr, memArr);
   if (searchValue) {
-    resultMemArr = resultMemArr.searchMembersByName(searchValue, resultMemArr);
+    resultMemArr = searchMembersByName(searchValue, resultMemArr);
   }
   return resultMemArr;
 };
