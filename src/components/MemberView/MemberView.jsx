@@ -1,5 +1,8 @@
 import { object } from "prop-types";
-import { sortByNameUserFirst, searchMemElementsByName } from "../../utils/utils";
+import {
+  sortByNameUserFirst,
+  searchMemElementsByName,
+} from "../../utils/utils";
 import { useEffect, useState } from "react";
 
 export default function MemberView({ bandRepo }) {
@@ -60,7 +63,17 @@ export default function MemberView({ bandRepo }) {
   useEffect(() => {
     if (searchValue) {
       const searchResult = searchMemElementsByName(searchValue, memberDisplay);
-      setSearchDisplay(searchResult);
+      if (searchResult) {
+        const resultDisplay = (
+          <>
+            <h4>Search by name results</h4>
+            {searchResult}
+          </>
+        );
+        setSearchDisplay(resultDisplay);
+      } else {
+        setSearchDisplay(<h4>No search results</h4>);
+      }
     } else {
       setSearchDisplay(null);
     }

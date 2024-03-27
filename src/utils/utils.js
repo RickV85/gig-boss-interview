@@ -21,6 +21,10 @@ export const searchMemElementsByName = (value, elementArr) => {
       const name = element.props.children.split(":")[0].toLowerCase();
       return name.includes(searchVal);
     });
-    return searchResult;
+    if (searchResult?.length) {
+      return searchResult;
+    } else {
+      return null;
+    }
   }
 };
