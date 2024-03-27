@@ -5,6 +5,7 @@ import TotalIncome from "../TotalIncome/TotalIncome";
 import { object } from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import MemberView from "../MemberView/MemberView";
+import { useNavigate } from "react-router";
 
 export default function Books({ bandRepo }) {
   const [grandTotal, setGrandTotal] = useState(0);
@@ -14,6 +15,7 @@ export default function Books({ bandRepo }) {
   const [memViewActive, setMemViewActive] = useState(false);
   const bandSelectRef = useRef(undefined);
   const incomeByMusicianRef = useRef(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!bandRepo) return;
@@ -86,7 +88,9 @@ export default function Books({ bandRepo }) {
       >
         Income by Musician
       </button>
-      <button className="books-btn">Export Data</button>
+      <button className="books-btn" onClick={() => navigate("/aggregate")}>
+        Export Data
+      </button>
       <section className="income-display">
         {!selectedBand && !memViewActive ? (
           <p style={{ marginTop: "1rem" }}>
