@@ -73,6 +73,7 @@ export default function MemberView({ bandRepo }) {
       <header className="income-display-header">
         <div className="mem-view-input-div">
           <input
+            id="memSearchNameInput"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             type="text"
@@ -80,6 +81,7 @@ export default function MemberView({ bandRepo }) {
             className="mem-view-input"
           />
           <select
+            id="memFilterSelect"
             value={filterSelection}
             onChange={(e) => setFilterSelection(e.target.value)}
             className="mem-view-select"

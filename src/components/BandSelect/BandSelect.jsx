@@ -23,6 +23,7 @@ export default function BandSelect({
 
   return (
     <select
+      id="bandSelect"
       value={selectedBandName}
       onChange={(e) => handleSelect(e.target.value)}
       className="band-select"
