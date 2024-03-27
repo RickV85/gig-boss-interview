@@ -12,18 +12,18 @@ export default function MemberView({ bandRepo }) {
     return sortByNameUserFirst(memIncomeArr);
   }, [bandRepo]);
 
-  const createDispElementsFromMemArr = (memArr) => {
+  const createDispElementsFromMemArr = (memArr, filterStr) => {
     if (memArr?.length) {
       const memberElements = memArr.map((mem, i) => {
-        let memClass = "mem-inc";
+        let memClass = "member-income";
         // Create styled elements to highlight users with >= $600 income
-        if (mem.income >= 600 && filterSelection === "all") {
+        if (mem.income >= 600 && filterStr === "all") {
           memClass += " over-600";
         }
         return (
           <p
             className={memClass}
-            key={`allMemInc-${i}`}
+            key={`memInc-${i}`}
           >{`${mem.name}: $${mem.income}`}</p>
         );
       });
@@ -43,7 +43,8 @@ export default function MemberView({ bandRepo }) {
       // Convert results to elements, if none, show no results found
       if (filterAndSearchMemResults?.length) {
         filterAndSearchMemResults = createDispElementsFromMemArr(
-          filterAndSearchMemResults
+          filterAndSearchMemResults,
+          filterSelection
         );
       } else {
         return setMemberDisplay(<h4>No search results</h4>);
