@@ -6,8 +6,20 @@ export default function TotalAggregate({ bandRepo }) {
     Infinity
   );
 
-  return <section className="total-agg-section">
-  {totalPaidOver600}</section>;
+  const totalPaidUnder600 = bandRepo.calcTotalForMembersIncomeInRange(0, 600);
+
+  const totalPaidAllMems = bandRepo.calcTotalForMembersIncomeInRange(
+    0,
+    Infinity
+  );
+
+  return (
+    <section className="total-agg-section">
+      <p>{totalPaidOver600}</p>
+      <p>{totalPaidUnder600}</p>
+      <p>{totalPaidAllMems}</p>
+    </section>
+  );
 }
 
 TotalAggregate.propTypes = {
