@@ -27,6 +27,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid #571e36;
 }
 
 .all-mem-agg-display {
@@ -43,7 +44,7 @@
 }
 
 .mem-agg-income {
-  width: 5rem;
+  width: 5.25rem;
 }
 
 .total-agg-section {

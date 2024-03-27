@@ -13,11 +13,17 @@ export default function TotalAggregate({ bandRepo }) {
     Infinity
   );
 
+  const totalIncomeAllBands = bandRepo.calcTotalIncomeAllBands();
+
+  const totalUserIncome = bandRepo.calcTotalUserIncome();
+
   return (
     <section className="total-agg-section">
       <p>{totalPaidOver600}</p>
       <p>{totalPaidUnder600}</p>
       <p>{totalPaidAllMems}</p>
+      <p>{totalIncomeAllBands}</p>
+      <p>{totalUserIncome}</p>
     </section>
   );
 }
