@@ -51,3 +51,12 @@ export const filterAndSearchMembers = (filterStr, searchValue, memArr) => {
   }
   return resultMemArr;
 };
+
+export const formatCurrencyStrings = (strArr) =>
+  strArr.map((str) =>
+    str.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 2,
+    })
+  );
