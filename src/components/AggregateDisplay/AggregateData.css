@@ -1,0 +1,15 @@
+.all-mem-agg-section,
+.total-agg-section {
+  min-height: 37vh;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 5px;
+}
+
+.all-mem-agg-section {
+  background-color: #d2d7d4;
+}
+
+.total-agg-section {
+  background-color: #571e368f;
+}
