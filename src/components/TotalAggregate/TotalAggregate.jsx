@@ -19,11 +19,36 @@ export default function TotalAggregate({ bandRepo }) {
 
   return (
     <section className="total-agg-section">
-      <p>{totalPaidOver600}</p>
-      <p>{totalPaidUnder600}</p>
-      <p>{totalPaidAllMems}</p>
-      <p>{totalIncomeAllBands}</p>
-      <p>{totalUserIncome}</p>
+      <table className="total-table">
+        <tbody>
+          <tr>
+            <td className="total-table-label-col">
+              Total paid to members with income of $600 or more
+            </td>
+            <td className="total-table-amt-col">${totalPaidOver600}</td>
+          </tr>
+          <tr>
+            <td className="total-table-label-col">
+              Total paid to members with less than $600 income
+            </td>
+            <td className="total-table-amt-col">${totalPaidUnder600}</td>
+          </tr>
+          <tr>
+            <td className="total-table-label-col">
+              Total paid to all band members
+            </td>
+            <td className="total-table-amt-col">${totalPaidAllMems}</td>
+          </tr>
+          <tr>
+            <td className="total-table-label-col">Total income for 2023-24</td>
+            <td className="total-table-amt-col">${totalIncomeAllBands}</td>
+          </tr>
+          <tr>
+            <td className="total-table-label-col">Total personal income</td>
+            <td className="total-table-amt-col">${totalUserIncome}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   );
 }
