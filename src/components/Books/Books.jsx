@@ -64,7 +64,7 @@ export default function Books({ bandRepo }) {
   return (
     <main>
       <h1 className="books-header">Books</h1>
-      {bandRepo && !bandRepo.bands.length ? (
+      {bandRepo && !bandRepo?.bands?.length ? (
         <div>
           <p className="no-band-data-msg">
             No band data to display, add some bands to view the Books for each

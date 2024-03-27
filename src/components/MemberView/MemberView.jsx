@@ -1,9 +1,10 @@
 import { object } from "prop-types";
-import { sortByNameUserFirst } from "../../utils/utils";
+import { sortByNameUserFirst, searchMemElementsByName } from "../../utils/utils";
 import { useEffect, useState } from "react";
 
 export default function MemberView({ bandRepo }) {
   const [searchValue, setSearchValue] = useState("");
+  const [searchDisplay, setSearchDisplay] = useState(undefined);
   const [filterSelection, setFilterSelection] = useState("all");
   const [memberDisplay, setMemberDisplay] = useState(undefined);
 
@@ -56,6 +57,16 @@ export default function MemberView({ bandRepo }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSelection]);
 
+  useEffect(() => {
+    if (searchValue) {
+      const searchResult = searchMemElementsByName(searchValue, memberDisplay);
+      setSearchDisplay(searchResult);
+    } else {
+      setSearchDisplay(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue]);
+
   return (
     <>
       <header className="income-display-header">
@@ -80,7 +91,9 @@ export default function MemberView({ bandRepo }) {
         <h3>All Members</h3>
         <h4>{`My Income: $${bandRepo.calcTotalUserIncome()}`}</h4>
       </header>
-      <div className="income-display-members">{memberDisplay}</div>
+      <div className="income-display-members">
+        {searchDisplay ? searchDisplay : memberDisplay}
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 export const sortByNameUserFirst = (members) => {
-  const sortedMembers =  members.toSorted((a, b) => {
+  const sortedMembers = members.toSorted((a, b) => {
     if (a.name.toLowerCase() === "you") {
       return -1;
     } else if (b.name.toLowerCase() === "you") {
@@ -10,6 +10,17 @@ export const sortByNameUserFirst = (members) => {
       return 1;
     }
   });
-  
+
   return sortedMembers;
-}
+};
+
+export const searchMemElementsByName = (value, elementArr) => {
+  if (value && elementArr?.length) {
+    const searchVal = value.trim().toLowerCase();
+    const searchResult = elementArr.filter((element) => {
+      const name = element.props.children.split(":")[0].toLowerCase();
+      return name.includes(searchVal);
+    });
+    return searchResult;
+  }
+};
