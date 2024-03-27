@@ -1,8 +1,9 @@
 import { object } from "prop-types";
 import "./AggregateData.css";
+import AllMemAggregate from "../AllMemAggregate/AllMemAggregate";
+import TotalAggregate from "../TotalAggregate/TotalAggregate";
 
 export default function AggregateData({ bandRepo }) {
-  
   return (
     <main>
       <h1>Aggregate Data 2023-24</h1>
@@ -13,7 +14,12 @@ export default function AggregateData({ bandRepo }) {
             No band data to display, add some bands to view aggregate data!
           </p>
         </div>
-      ) : <></>}
+      ) : (
+        <>
+          <AllMemAggregate memArr={[]} />
+          <TotalAggregate />
+        </>
+      )}
     </main>
   );
 }

@@ -9,6 +9,15 @@ body {
   background-color: #ffffff;
 }
 
+main {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 button,
 select {
   border: none;
