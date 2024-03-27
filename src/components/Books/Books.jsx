@@ -66,6 +66,7 @@ export default function Books({ bandRepo }) {
   return (
     <main>
       <h1 className="books-header">Books</h1>
+      {/* If no bands, display message to add bands, else show all elements */}
       {bandRepo && !bandRepo?.bands?.length ? (
         <div>
           <p className="no-band-data-msg">
@@ -73,33 +74,36 @@ export default function Books({ bandRepo }) {
             band and all members!
           </p>
         </div>
-      ) : null}
-      <TotalIncome total={grandTotal} />
-      <BandSelect
-        bands={bands}
-        selectedBandName={selectedBandName}
-        setSelectedBandName={setSelectedBandName}
-        bandSelectRef={bandSelectRef}
-      />
-      <button
-        className="books-btn"
-        onClick={() => handleMemViewClick()}
-        ref={incomeByMusicianRef}
-      >
-        Income by Musician
-      </button>
-      <button className="books-btn" onClick={() => navigate("/aggregate")}>
-        Export Data
-      </button>
-      <section className="income-display">
-        {!selectedBand && !memViewActive ? (
-          <p style={{ marginTop: "1rem" }}>
-            Select band or musician view above!
-          </p>
-        ) : null}
-        {selectedBand && <IncomeDisplay selectedBand={selectedBand} />}
-        {memViewActive && bandRepo && <MemberView bandRepo={bandRepo} />}
-      </section>
+      ) : (
+        <>
+          <TotalIncome total={grandTotal} />
+          <BandSelect
+            bands={bands}
+            selectedBandName={selectedBandName}
+            setSelectedBandName={setSelectedBandName}
+            bandSelectRef={bandSelectRef}
+          />
+          <button
+            className="books-btn"
+            onClick={() => handleMemViewClick()}
+            ref={incomeByMusicianRef}
+          >
+            Income by Musician
+          </button>
+          <button className="books-btn" onClick={() => navigate("/aggregate")}>
+            Export Data
+          </button>
+          <section className="income-display">
+            {!selectedBand && !memViewActive ? (
+              <p style={{ marginTop: "1rem" }}>
+                Select band or musician view above!
+              </p>
+            ) : null}
+            {selectedBand && <IncomeDisplay selectedBand={selectedBand} />}
+            {memViewActive && bandRepo && <MemberView bandRepo={bandRepo} />}
+          </section>
+        </>
+      )}
     </main>
   );
 }
