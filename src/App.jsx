@@ -4,6 +4,7 @@ import Books from "./components/Books/Books";
 import { BandRepo } from "./Classes/BandRepo";
 import { Routes, Route } from "react-router-dom";
 import { fetchBandData } from "./utils/apicalls";
+import AggregateData from "./components/AggregateDisplay/AggregateDisplay";
 
 export default function App() {
   const [bandRepo, setBandRepo] = useState(undefined);
@@ -46,6 +47,10 @@ export default function App() {
       ) : null}
       <Routes>
         <Route path="/" element={<Books bandRepo={bandRepo} />} />
+        <Route
+          path="/aggregate"
+          element={<AggregateData bandRepo={bandRepo} />}
+        />
       </Routes>
     </>
   );
