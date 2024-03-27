@@ -4,6 +4,16 @@ import AllMemAggregate from "../AllMemAggregate/AllMemAggregate";
 import TotalAggregate from "../TotalAggregate/TotalAggregate";
 
 export default function AggregateData({ bandRepo }) {
+  const createMemArrSortedByIncome = () => {
+    if (bandRepo?.bands) {
+      return bandRepo
+        .createYearlyTotalIncomeByMember()
+        .toSorted((a, b) => b.income - a.income);
+    }
+  };
+
+  const sortedMemArr = createMemArrSortedByIncome();
+
   return (
     <main>
       <h1>Aggregate Data 2023-24</h1>
@@ -16,7 +26,7 @@ export default function AggregateData({ bandRepo }) {
         </div>
       ) : (
         <>
-          <AllMemAggregate memArr={[]} />
+          {sortedMemArr && <AllMemAggregate memArr={sortedMemArr} />}
           <TotalAggregate />
         </>
       )}
