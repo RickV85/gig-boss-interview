@@ -1,5 +1,5 @@
 import { object } from "prop-types";
-import "./AggregateData.css";
+import "./AggregateDisplay.css";
 import AllMemAggregate from "../AllMemAggregate/AllMemAggregate";
 import TotalAggregate from "../TotalAggregate/TotalAggregate";
 
