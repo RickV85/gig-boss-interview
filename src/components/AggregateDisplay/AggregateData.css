@@ -3,6 +3,7 @@
   width: 100%;
   max-width: 1000px;
   border-radius: 5px;
+  padding: 1rem;
 }
 
 .all-mem-agg-section {
@@ -14,43 +15,45 @@
   justify-content: center;
 }
 
-.all-mem-agg-container {
-  width: 85%;
-  max-width: 700px;
-  height: 95%;
+.all-mem-table {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.all-mem-agg-header {
-  display: flex;
-  justify-content: space-between;
+.all-mem-table-header {
   width: 100%;
   border-bottom: 1px solid #571e36;
 }
 
-.all-mem-agg-display {
+.all-mem-table-body {
   overflow-y: scroll;
   height: 28vh;
   width: 100%;
 }
 
-.mem-agg-income-div {
+.mem-agg-table-row {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   text-align: center;
   border-bottom: 1px solid #b8b8b8;
 }
 
+.mem-agg-name {
+  font-weight: 500;
+}
+
 .mem-agg-income {
-  width: 5.25rem;
+  font-weight: 600;
 }
 
 .total-agg-section {
   height: 100%;
   background-color: #571e368f;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,11 +69,11 @@
 .total-table-label-col,
 .total-table-amt-col {
   font-size: 0.85rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #571e36;
 }
 
 .total-table-amt-col {
-  font-weight: 700;
+  font-weight: 600;
   padding-left: 1rem;
   text-align: right;
 }

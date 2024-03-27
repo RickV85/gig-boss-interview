@@ -4,16 +4,16 @@ export default function AllMemAggregate({ memArr }) {
   const createDisplayElementsFromMemArr = () => {
     if (memArr?.length) {
       const memberElements = memArr.map((mem, i) => {
-        let memClass = "mem-agg-income";
+        let incomeClass = "mem-agg-income";
         // Create styled elements to highlight users with >= $600 income
         if (mem.income >= 600) {
-          memClass += " over-600";
+          incomeClass += " over-600";
         }
         return (
-          <div className="mem-agg-income-div" key={`memAggInc-${i}`}>
-            <p className={memClass}>{`${mem.name}`}</p>
-            <p className={memClass}>{`$${mem.income}`}</p>
-          </div>
+          <tr className="mem-agg-table-row" key={`memAggInc-${i}`}>
+            <td className="mem-agg-name">{`${mem.name}`}</td>
+            <td className={incomeClass}>{`$${mem.income}`}</td>
+          </tr>
         );
       });
       return memberElements;
@@ -22,15 +22,17 @@ export default function AllMemAggregate({ memArr }) {
 
   return (
     <section className="all-mem-agg-section">
-      <div className="all-mem-agg-container">
-        <header className="all-mem-agg-header">
-          <h2>Musician</h2>
-          <h2>Income</h2>
-        </header>
-        <div className="all-mem-agg-display">
+      <table className="all-mem-table">
+        <thead className="all-mem-table-header">
+          <tr className="mem-agg-table-row">
+            <th>Musician</th>
+            <th>Income</th>
+          </tr>
+        </thead>
+        <tbody className="all-mem-table-body">
           {createDisplayElementsFromMemArr()}
-        </div>
-      </div>
+        </tbody>
+      </table>
     </section>
   );
 }
